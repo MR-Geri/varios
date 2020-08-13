@@ -25,3 +25,4 @@ for line in compare:
 f.close()
 f1.close()
 f2.close()
+# http://www.pythonchallenge.com/pc/hex/bin.html
