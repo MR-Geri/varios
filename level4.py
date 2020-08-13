@@ -3,9 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-URL = 'http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=90231'
-
-
 def get_html(url, params=None):
     r = requests.get(url, params=params)
     return r
@@ -17,12 +14,14 @@ def get_content(html):
     return soup
 
 
-def parse():
-    global URL
-    html = get_html('http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=90231')
+def parse(url):
+    html = get_html(url)
     while html.status_code == 200:
         data = str(get_content(html.text))
-        u = URL.split('=')
+        u = url.split('=')
         URL = f'{u[0]}={data.split()[-1]}'
         print(data, URL)
         html = get_html(URL)
+
+
+parse('http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=90231')
